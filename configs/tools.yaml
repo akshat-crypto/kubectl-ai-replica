@@ -1,0 +1,109 @@
+# Custom Tools Configuration
+# This file defines additional tools available to the AI assistant
+
+# Kubernetes tools
+- name: kubectl_get_pods
+  description: "List pods in a namespace or across all namespaces"
+  command: "kubectl"
+  command_desc: |
+    kubectl get pods [--namespace=<namespace>] [--all-namespaces]
+    Examples:
+    - kubectl get pods                    # List pods in current namespace
+    - kubectl get pods -n default         # List pods in default namespace
+    - kubectl get pods --all-namespaces   # List pods in all namespaces
+
+- name: kubectl_get_services
+  description: "List services in a namespace or across all namespaces"
+  command: "kubectl"
+  command_desc: |
+    kubectl get services [--namespace=<namespace>] [--all-namespaces]
+    Examples:
+    - kubectl get services                # List services in current namespace
+    - kubectl get services -n default     # List services in default namespace
+    - kubectl get services --all-namespaces # List services in all namespaces
+
+- name: kubectl_get_deployments
+  description: "List deployments in a namespace or across all namespaces"
+  command: "kubectl"
+  command_desc: |
+    kubectl get deployments [--namespace=<namespace>] [--all-namespaces]
+    Examples:
+    - kubectl get deployments             # List deployments in current namespace
+    - kubectl get deployments -n default  # List deployments in default namespace
+    - kubectl get deployments --all-namespaces # List deployments in all namespaces
+
+- name: kubectl_create_deployment
+  description: "Create a new deployment"
+  command: "kubectl"
+  command_desc: |
+    kubectl create deployment <name> --image=<image> [--replicas=<count>] [--namespace=<namespace>]
+    Examples:
+    - kubectl create deployment myapp --image=nginx:latest
+    - kubectl create deployment myapp --image=nginx:latest --replicas=3
+    - kubectl create deployment myapp --image=nginx:latest -n default
+
+- name: kubectl_scale_deployment
+  description: "Scale a deployment to a specific number of replicas"
+  command: "kubectl"
+  command_desc: |
+    kubectl scale deployment <name> --replicas=<count> [--namespace=<namespace>]
+    Examples:
+    - kubectl scale deployment myapp --replicas=5
+    - kubectl scale deployment myapp --replicas=0 -n default
+
+- name: kubectl_delete_pod
+  description: "Delete a pod"
+  command: "kubectl"
+  command_desc: |
+    kubectl delete pod <name> [--namespace=<namespace>]
+    Examples:
+    - kubectl delete pod nginx-deployment-abc123
+    - kubectl delete pod nginx-deployment-abc123 -n default
+
+- name: kubectl_describe_pod
+  description: "Describe a pod in detail"
+  command: "kubectl"
+  command_desc: |
+    kubectl describe pod <name> [--namespace=<namespace>]
+    Examples:
+    - kubectl describe pod nginx-deployment-abc123
+    - kubectl describe pod nginx-deployment-abc123 -n default
+
+# Helm tools
+- name: helm
+  description: "Helm is the Kubernetes package manager and deployment tool"
+  command: "helm"
+  command_desc: |
+    Helm command-line interface, with the following core subcommands:
+    - helm install <release-name> <chart> [flags]     # Install a chart
+    - helm upgrade <release-name> <chart> [flags]     # Upgrade a release
+    - helm list [flags]                               # List releases
+    - helm uninstall <release-name> [flags]           # Uninstall a release
+    - helm status <release-name> [flags]              # Show release status
+    Examples:
+    - helm install myapp ./myapp-chart
+    - helm upgrade myapp ./myapp-chart --set image.tag=v2.0.0
+    - helm list --all-namespaces
+    - helm uninstall myapp
+
+# System tools
+- name: bash
+  description: "Execute bash commands on the system"
+  command: "bash"
+  command_desc: |
+    Execute bash commands for system operations
+    Examples:
+    - bash -c "echo 'Hello World'"
+    - bash -c "ls -la"
+    - bash -c "ps aux | grep nginx"
+
+# Network tools
+- name: curl
+  description: "Make HTTP requests to test endpoints"
+  command: "curl"
+  command_desc: |
+    curl command for making HTTP requests
+    Examples:
+    - curl http://localhost:8080/health
+    - curl -X POST http://api.example.com/data
+    - curl -H "Authorization: Bearer token" http://api.example.com/protected 

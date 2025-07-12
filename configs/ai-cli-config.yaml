@@ -1,0 +1,40 @@
+# AI CLI Configuration
+# This file configures the AI-powered Kubernetes assistant
+
+# LLM provider configuration
+provider: "gemini"                    # Options: "openai", "gemini"
+model: "gemini-1.5-flash"            # Model to use
+api_key: "${GEMINI_API_KEY}"         # API key (use environment variable)
+max_tokens: 2048                     # Maximum tokens in response
+temperature: 0.7                     # Creativity level (0.0-2.0)
+skip_verify_ssl: false               # Skip SSL verification (not recommended)
+
+# Tool configuration
+custom_tools_config:                  # Paths to custom tool configurations
+  - "~/.config/mcp-servers/tools.yaml"
+skip_permissions: false              # Skip confirmation for resource-modifying commands
+enable_tool_use_shim: false          # Enable tool use shim for certain models
+
+# MCP configuration
+mcp_server: false                    # Run in MCP server mode
+mcp_client: false                    # Enable MCP client mode
+external_tools: false                # Discover external MCP tools
+
+# Runtime settings
+max_iterations: 20                   # Maximum iterations for the agent
+quiet: false                         # Run in non-interactive mode
+remove_workdir: false                # Remove temporary working directory after execution
+
+# Kubernetes configuration
+kubeconfig: "~/.kube/config"         # Path to kubeconfig file
+
+# UI configuration
+user_interface: "terminal"           # UI mode: "terminal" or "html"
+ui_listen_address: "localhost:8888"  # Address for HTML UI server
+
+# Prompt configuration
+prompt_template_file_path: ""        # Custom prompt template file
+extra_prompt_paths: []               # Additional prompt template paths
+
+# Debug and trace settings
+trace_path: "/tmp/mcp-servers-trace.txt"  # Path to trace file 
